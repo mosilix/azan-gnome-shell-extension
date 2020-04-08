@@ -7,3 +7,11 @@
     border-radius: 5px;
     padding: .5em;
 }
+
+
+.azan-panel {
+    font-family: Lotus, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    direction: rtl;
+}

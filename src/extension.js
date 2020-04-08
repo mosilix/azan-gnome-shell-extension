@@ -71,21 +71,21 @@ const Azan = new Lang.Class({
     this._prayTimes = new PrayTimes.PrayTimes('ISNA');
 
 
-    this._dayNames = new Array("Ahad", "Ithnin", "Thulatha", "Arbaa", "Khams", "Jumuah", "Sabt");
-    this._monthNames = new Array("Muharram", "Safar", "Rabi'ul Awwal", "Rabi'ul Akhir",
-        "Jumadal Ula", "Jumadal Akhira", "Rajab", "Sha'ban",
-        "Ramadan", "Shawwal", "Dhul Qa'ada", "Dhul Hijja");
+    this._dayNames = new Array("یکشنبه", "دوشنبه", "سه شنبه", "چهار شنبه", "پنج شنبه", "جمعه", "شنبه");
+    this._monthNames = new Array("محرم", "صفر", "ربیع الاول", "ربیع الثانی",
+        "جمادی الاول", "جمادی الثانی", "رجب", "شعبان",
+        "رمضان", "شوال", "ذی القعده", "ذی الحجه");
 
     this._timeNames = {
-        imsak: 'Imsak',
-        fajr: 'Fajr',
-        sunrise: 'Sunrise',
-        dhuhr: 'Dhuhr',
-        asr: 'Asr',
-        sunset: 'Sunset',
-        maghrib: 'Maghrib',
-        isha: 'Isha',
-        midnight: 'Midnight'
+        imsak: 'سحر',
+        fajr: 'اذان صبح',
+        sunrise: 'طلوع آفتاب',
+        dhuhr: 'اذان ظهر',
+        asr: 'اذان عصر',
+        sunset: 'غروب آفتاب',
+        maghrib: 'اذان مغرب',
+        isha: 'اذان عشاء',
+        midnight: 'نیمه شب'
     };
 
     this._timeConciseLevels = {
@@ -103,7 +103,7 @@ const Azan = new Lang.Class({
     this._prayItems = {};
 
     this._dateMenuItem = new PopupMenu.PopupMenuItem(_("TODO"), {
-        reactive: true, hover: false, activate: false
+        style_class: 'azan-panel', reactive: true, hover: false, activate: false
     });
 
     this.menu.addMenuItem(this._dateMenuItem);
@@ -122,7 +122,7 @@ const Azan = new Lang.Class({
 
         // ================================
         let prayMenuItem = new PopupMenu.PopupMenuItem(_(prayerName), {
-            reactive: true, hover: false, activate: false
+            style_class: 'azan-panel', reactive: true, hover: false, activate: false
         });
 
         let bin = new St.Bin({
@@ -155,7 +155,7 @@ const Azan = new Lang.Class({
 
     this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
 
-    this.menu.addAction(_("Settings"), Lang.bind(this, function() {
+    this.menu.addAction(_("تنظیمات"), Lang.bind(this, function() {
 
         // this._notify('Title Hello', 'body world');
 
@@ -394,11 +394,11 @@ const Azan = new Lang.Class({
       // Main.notify(_("It's time for " + this._timeNames[nearestPrayerId]));
 
       if (isTimeForPraying) {
-          Main.notify(_("It's time for " + this._timeNames[nearestPrayerId]));
-          this.indicatorText.set_text(_("Now : " + this._timeNames[nearestPrayerId]));
+          Main.notify(_("وقت " + this._timeNames[nearestPrayerId]));
+          this.indicatorText.set_text(_("اکنون: " + this._timeNames[nearestPrayerId]));
 
       } else {
-          this.indicatorText.set_text(this._timeNames[nearestPrayerId] + ' -' + this._formatRemainingTimeFromMinutes(minDiffMinutes));
+          this.indicatorText.set_text( this._formatRemainingTimeFromMinutes(minDiffMinutes)+ ' تا ' +this._timeNames[nearestPrayerId] );
       }
 
   },
